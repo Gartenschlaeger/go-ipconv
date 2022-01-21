@@ -2,7 +2,6 @@ package main
 
 import (
 	"os"
-	"regexp"
 	"strings"
 )
 
@@ -14,14 +13,14 @@ func main() {
 		firstArgument := strings.TrimSpace(os.Args[1])
 
 		// handle ipv4 address
-		ipv4Address, _ := regexp.MatchString(ip4vPattern, firstArgument)
+		ipv4Address := regexp_ipv4.MatchString(firstArgument)
 		if ipv4Address {
 			processIpv4Address(firstArgument)
 			return
 		}
 
 		// handle ipv4 cidr
-		cidrMatch, _ := regexp.MatchString(ipv4CidrPattern, firstArgument)
+		cidrMatch := regexp_ipv4cidr.MatchString(firstArgument)
 		if cidrMatch {
 			processIpv4Cidr(firstArgument)
 			return
