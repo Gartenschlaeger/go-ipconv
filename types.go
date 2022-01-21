@@ -1,8 +1,9 @@
 package main
 
 type Options struct {
-	ipAddress       string
-	outputAsDecimal bool
+	ipv4Address string
+	ipv4Octets  [4]byte
+	outputType  string
 }
 
 type IpInformations struct {

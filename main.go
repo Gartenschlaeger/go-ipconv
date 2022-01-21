@@ -3,35 +3,52 @@ package main
 import (
 	"fmt"
 	"os"
+	"regexp"
+	"strings"
 )
+
+// ipv4 address : 000.000.000.000
+const ip4vPattern = "^\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}$"
+
+// ipv4 cidr : 000.000.000.000/00
+const ipv4CidrPattern = "^\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}/\\d{1,2}$"
 
 func main() {
 	argsCount := len(os.Args)
 	if argsCount < 2 {
 		writeHelpOutput()
 	} else {
-		options := parseOptions()
-		processIp(options)
+		firstArgument := strings.TrimSpace(os.Args[1])
+
+		ipv4Address, _ := regexp.MatchString(ip4vPattern, firstArgument)
+		if ipv4Address {
+			processIpv4Address(firstArgument)
+			return
+		}
+
+		cidrMatch, _ := regexp.MatchString(ipv4CidrPattern, firstArgument)
+		if cidrMatch {
+			processIpv4Cidr(firstArgument)
+			return
+		}
+
+		writeHelpOutput()
 	}
-}
-
-func processIp(options Options) {
-	octetsAsInts := parseipv4Octets(options.ipAddress)
-
-	informations := IpInformations{}
-	informations.decimalValue = ipv4OctetsToDecimal(octetsAsInts)
-
-	writeOptionsOutput(options, informations)
 }
 
 func writeHelpOutput() {
-	exitWithErrorCode(1, "Syntax: cidr <ip-address> [options]")
+	fmt.Println("Syntax: ipconv <ipv4 pattern>")
+	os.Exit(1)
 }
 
-func writeOptionsOutput(options Options, informations IpInformations) {
-	if options.outputAsDecimal {
-		fmt.Println(informations.decimalValue)
-	} else {
-		fmt.Println("Decimal", informations.decimalValue)
-	}
+func processIpv4Address(ipv4Address string) {
+	octets := ipv4StringToOctets(ipv4Address)
+	decimal := ip4vOctetsToDecimal(octets)
+
+	fmt.Printf("IPv4 address %v\n", ipv4Address)
+	fmt.Printf("Decimal      %v\n", decimal)
+}
+
+func processIpv4Cidr(ipv4Cidr string) {
+	fmt.Println("processIpv4Cidr")
 }
