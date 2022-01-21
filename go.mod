@@ -2,4 +2,4 @@ module ipconv
 
 go 1.17
 
-require github.com/apparentlymart/go-cidr v1.1.0
+require github.com/c-robinson/iplib v1.0.3
