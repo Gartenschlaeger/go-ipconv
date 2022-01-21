@@ -9,8 +9,8 @@ import (
 	"github.com/apparentlymart/go-cidr/cidr"
 )
 
-func processIpv4Cidr(ipv4Cidr string) {
-	r := regexp_ipv4cidr.FindStringSubmatch(ipv4Cidr)
+func convertCidr(cidr string) string {
+	r := regexp_ipv4cidr.FindStringSubmatch(cidr)
 
 	octets := []string{r[1], r[2], r[3], r[4], r[5]}
 	for i := 0; i < len(octets); i++ {
@@ -19,7 +19,11 @@ func processIpv4Cidr(ipv4Cidr string) {
 		}
 	}
 
-	convertedCidr := strings.Join(octets, "")
+	return strings.Join(octets, "")
+}
+
+func processIpv4Cidr(ipv4Cidr string) {
+	convertedCidr := convertCidr(ipv4Cidr)
 
 	_, ipNet, err := net.ParseCIDR(convertedCidr)
 	if err == nil {
