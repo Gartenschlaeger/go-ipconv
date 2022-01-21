@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// converts ipv4 address string to numeric octets
 func ipv4StringToOctets(ip string) [4]byte {
 	octets := strings.Split(ip, ".")
 	if len(octets) != 4 {
@@ -21,6 +22,7 @@ func ipv4StringToOctets(ip string) [4]byte {
 	return octetsAsByte
 }
 
+// converts ipv4 numeric octets to decimal representation
 func ip4vOctetsToDecimal(octets [4]byte) int {
 	v1 := int(octets[0]) * int(math.Pow(256, 3))
 	v2 := int(octets[1]) * int(math.Pow(256, 2))
