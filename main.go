@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"regexp"
 	"strings"
@@ -34,21 +33,4 @@ func main() {
 
 		writeHelpOutput()
 	}
-}
-
-func writeHelpOutput() {
-	fmt.Println("Syntax: ipconv <ipv4 pattern>")
-	os.Exit(1)
-}
-
-func processIpv4Address(ipv4Address string) {
-	octets := ipv4StringToOctets(ipv4Address)
-	decimal := ip4vOctetsToDecimal(octets)
-
-	fmt.Printf("IPv4 address %v\n", ipv4Address)
-	fmt.Printf("Decimal      %v\n", decimal)
-}
-
-func processIpv4Cidr(ipv4Cidr string) {
-	fmt.Println("processIpv4Cidr")
 }
