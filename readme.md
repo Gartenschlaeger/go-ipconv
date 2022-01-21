@@ -4,10 +4,10 @@ CLI Tool to convert ip related values.
 
 # Examples
 
-## Convert ip to decimal value
+## IP address
 
 ~~~sh
-ipconv 192.168.0.1 --decimal
+ipconv 192.168.0.1
 ~~~
 
 ## CIDR
