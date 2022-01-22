@@ -2,6 +2,16 @@
 
 CLI Tool to convert ip related values.
 
+# Installation
+
+Currently this application has not been added to any package manager.
+If you have go installed on your computer, you can easily build it yourself.
+
+```sh
+go build .
+sudo mv ipconv /usr/local/bin
+```
+
 # Examples
 
 ## IP address
