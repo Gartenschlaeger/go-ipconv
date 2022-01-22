@@ -2,20 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Package IPv4 adress",
+            "name": "ipv4 ip",
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "args": ["192.168.0.50"],
+            "args": ["-i=192.168.0.50"],
             "program": "${workspaceFolder}"
         },
         {
-            "name": "Launch Package CIDR",
+            "name": "ipv4 cidr",
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "args": ["192.168.0.1/24"],
+            "args": ["-i=192.168.0.1/24"],
             "program": "${workspaceFolder}"
-        }        
+        }
     ]
 }
